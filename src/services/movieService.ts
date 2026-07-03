@@ -1,3 +1,4 @@
+import axios from "axios";
 import { api } from "@/lib/api";
 
 export const searchMovies = async (
