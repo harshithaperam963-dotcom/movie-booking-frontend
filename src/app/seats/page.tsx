@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import {
   getSeats,
@@ -23,7 +23,7 @@ interface Seat {
   isBooked: boolean;
 }
 
-export default function SeatsPage() {
+function SeatsContent()  {
   const [seats, setSeats] =
     useState<Seat[]>([]);
 
@@ -225,5 +225,21 @@ const theatreId =
       </div>
 
     </main>
+  );
+}
+  
+
+
+export default function SeatsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-black text-white flex items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
+      <SeatsContent />
+    </Suspense>
   );
 }
